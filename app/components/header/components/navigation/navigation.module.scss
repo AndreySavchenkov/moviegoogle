@@ -1,0 +1,19 @@
+.navigation {
+  display: flex;
+  gap: 16px;
+}
+
+.navigation__link {
+  font-size: 18px;
+  text-decoration: none;
+  color: var(--light-color);
+
+  &:hover {
+    color: var(--main-color);
+  }
+}
+
+.navigation__link--active {
+  color: var(--main-color);
+  border-bottom: 1px solid var(--main-color);
+}

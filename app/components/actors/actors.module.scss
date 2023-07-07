@@ -1,0 +1,18 @@
+.actors {
+  margin-top: 16px;
+}
+
+.actors__items {
+  margin-top: 16px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.actors__items-actor {
+  display: flex;
+  max-width: 240px;
+  width: 100%;
+  overflow: hidden;
+}
