@@ -2,8 +2,8 @@ import {MovieT} from "@shared/types";
 import FullFilm from "@components/full-film/full-film";
 
 const getFilmById = async (id: string) => {
-  const res = await fetch(`https://api.kinopoisk.dev/v1.3/movie/${id}`, {
-    headers: {'X-API-KEY': 'JTXBSKR-C3JME8X-Q0X18JC-VPDQN9T'},
+  const res = await fetch(`${process.env.BASE_API_URL}v1.3/movie/${id}`, {
+    headers: process.env.API_KEY ? {'X-API-KEY': process.env.API_KEY} : {},
   });
   return res.json();
 };

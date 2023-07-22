@@ -25,8 +25,8 @@ export default function Films() {
 
   const onSubmit = async (data: FormType) => {
     if (data.name) {
-      const res = await fetch(`https://api.kinopoisk.dev/v1.3/movie?name=${data.name}`, {
-        headers: {'X-API-KEY': 'JTXBSKR-C3JME8X-Q0X18JC-VPDQN9T'},
+      const res = await fetch(`${process.env.BASE_API_URL}v1.3/movie?name=${data.name}`, {
+        headers: process.env.API_KEY ? {'X-API-KEY': process.env.API_KEY} : {},
       });
       const moviesResponse: MoviesT = await res.json();
       const movies: MovieT [] = moviesResponse.docs;
@@ -47,6 +47,7 @@ export default function Films() {
       <div className={cnFilms}>
         {films && films.map((film) => (
           <Card
+            key={film.id}
             id={film.id}
             name={film.name}
             year={film.year}
