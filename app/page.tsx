@@ -11,9 +11,17 @@ const getRandomFilm = async () => {
 export default async function RandomFilm() {
   const film: MovieT = await getRandomFilm();
 
+  if (!film) {
+    return (
+      <main>
+        <h1>Not found film</h1>
+      </main>
+    )
+  }
+
   return (
     <main>
-      <FullFilm film={film} />
+      <FullFilm film={film}/>
     </main>
   );
 }
