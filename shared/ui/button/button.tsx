@@ -5,11 +5,12 @@ type CustomButtonProps = {
   color?: NormalColors;
   children: React.ReactNode;
   onClick?: React.MouseEventHandler;
+  type?: 'button' | 'reset' | 'submit';
 }
 
-const CustomButton: FC<CustomButtonProps> = ({color,children, onClick}) => {
+const CustomButton: FC<CustomButtonProps> = ({type, color, children, onClick}) => {
   return (
-    <Button onClick={onClick} color={color}>{children}</Button>
+    <Button onClick={onClick} color={color} type={type}>{children}</Button>
   )
 };
 

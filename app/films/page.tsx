@@ -1,92 +1,62 @@
-import Image from 'next/image';
-import {useClasses} from '@app/use-classes';
-import Actors from "@app/components/actors/actors";
+'use client'
 
-const getFilms = async () => {
-  const res = await fetch(`https://api.kinopoisk.dev/v1.3/movie?name=человек паук`, {
-    headers: {'X-API-KEY': 'JTXBSKR-C3JME8X-Q0X18JC-VPDQN9T'},
-  });
-  return res.json();
-};
+import {useClasses} from './use-classes';
+import BaseInput from "@shared/ui/inputs/base-input/base-input";
+import CustomButton from "@shared/ui/button/button";
+import {Controller, useForm} from "react-hook-form";
+import {useState} from "react";
+import {MoviesT, MovieT} from "@shared/types";
+import Card from "@app/films/components/card/card";
 
-export default async function Films() {
-  const films = await getFilms();
+type FormType = {
+  name: string;
+}
 
+export default function Films() {
+  const [films, setFilms] = useState<MovieT[]>();
+  console.log('films->', films)
   const {
     cnRoot,
-    cnTitle,
-    cnSecondaryTitle,
-    cnTopContainer,
-    cnRow,
-    cnTopContainerInfo,
-    cnTopContainerInfoTitle,
-    cnTopContainerInfoValue,
-    cnDescription,
-    cnBackdrop,
+    cnHeader,
+    cnFilms,
   } = useClasses();
 
-  // const infoRows = [
-  //   {title: 'Рейтинг IMDB', value: film.rating.imdb},
-  //   {title: 'Голоса', value: film.votes.imdb},
-  //   {title: 'Год', value: film.year},
-  //   {title: 'Длительность', value: film.movieLength},
-  // ]
+  const {control, handleSubmit} = useForm({defaultValues: {name: ''}});
 
-  console.log('films->', films);
+  const onSubmit = async (data: FormType) => {
+    if (data.name) {
+      const res = await fetch(`https://api.kinopoisk.dev/v1.3/movie?name=${data.name}`, {
+        headers: {'X-API-KEY': 'JTXBSKR-C3JME8X-Q0X18JC-VPDQN9T'},
+      });
+      const moviesResponse: MoviesT = await res.json();
+      const movies: MovieT [] = moviesResponse.docs;
+      setFilms(movies);
+    }
+  }
 
   return (
     <main className={cnRoot}>
-      {/*<h1 className={cnTitle}>*/}
-      {/*  {film.name} {film.alternativeName && <span className={cnSecondaryTitle}>({film.alternativeName})</span>}*/}
-      {/*</h1>*/}
-      {/*<section className={cnTopContainer}>*/}
-      {/*  <div>*/}
-      {/*    <Image src={film.poster.url} alt="film logo" width={300} height={400}/>*/}
-      {/*  </div>*/}
-      {/*  <div className={cnTopContainerInfo}>*/}
-      {/*    {infoRows.map((row, index) => {*/}
-      {/*      if (row.value) {*/}
-      {/*        return (*/}
-      {/*          <div key={index} className={cnRow}>*/}
-      {/*            <span className={cnTopContainerInfoTitle}>{row.title}:</span>*/}
-      {/*            <span className={cnTopContainerInfoValue}>{row.value}</span>*/}
-      {/*          </div>*/}
-      {/*        )*/}
-      {/*      } else {*/}
-      {/*        return false;*/}
-      {/*      }*/}
-      {/*    })}*/}
 
-      {/*    <div className={cnRow}>*/}
-      {/*      <span className={cnTopContainerInfoTitle}>Страны:</span>*/}
-      {/*      <div className={cnRow}>*/}
-      {/*        {film.countries.map((country, index) => (*/}
-      {/*          <span key={index} className={cnTopContainerInfoValue}>{country.name}</span>*/}
-      {/*        ))}*/}
-      {/*      </div>*/}
-      {/*    </div>*/}
+      <form className={cnHeader} onSubmit={handleSubmit(onSubmit)}>
+        <Controller name='name' control={control} render={({field}) => (
+          <BaseInput placeholder='Film title' {...field} />
+        )}/>
+        <CustomButton type='submit'>Search</CustomButton>
+      </form>
 
-      {/*    <div className={cnRow}>*/}
-      {/*      <span className={cnTopContainerInfoTitle}>Жанры:</span>*/}
-      {/*      <div className={cnRow}>*/}
-      {/*        {film.genres.map((genre, index) => (*/}
-      {/*          <span key={index} className={cnTopContainerInfoValue}>{genre.name}</span>*/}
-      {/*        ))}*/}
-      {/*      </div>*/}
-      {/*    </div>*/}
-
-
-      {/*  </div>*/}
-      {/*</section>*/}
-
-      {/*<p className={cnDescription}>{film.description}</p>*/}
-
-      {/*<div className={cnBackdrop}>*/}
-      {/*  <Image src={film.backdrop.url} alt="backdrop" fill/>*/}
-      {/*</div>*/}
-
-
-      {/*<Actors actors={film.persons} />*/}
+      <div className={cnFilms}>
+        {films && films.map((film) => (
+          <Card
+            id={film.id}
+            name={film.name}
+            year={film.year}
+            image={film.poster.url}
+            rating={film.rating.imdb}
+            votes={film.votes.imdb}
+            description={film.shortDescription}
+          />
+        ))}
+      </div>
 
     </main>
   );

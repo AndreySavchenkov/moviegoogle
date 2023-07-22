@@ -1,6 +1,6 @@
 import classNames from 'classnames/bind';
 
-import classes from './page.module.scss';
+import classes from './full-film.module.scss';
 
 const cn = classNames.bind(classes);
 

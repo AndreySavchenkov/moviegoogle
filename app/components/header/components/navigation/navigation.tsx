@@ -7,9 +7,9 @@ import {usePathname} from "next/navigation";
 import {useClasses} from './use-classes';
 
 const links = [
-  {name: 'Main', href: RoutesEnum.MAIN},
-  {name: 'Films', href: RoutesEnum.FIlMS},
-]
+  {name: 'Рандомный фильм', href: RoutesEnum.MAIN},
+  {name: 'Поиск фильмов', href: RoutesEnum.FIlMS},
+];
 
 const Navigation = () => {
   const {cnRoot, cnLink} = useClasses();

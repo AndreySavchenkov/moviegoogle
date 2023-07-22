@@ -1,6 +1,7 @@
 .film {
   display: flex;
   flex-direction: column;
+  margin-bottom: 32px;
 }
 
 .film__title {
@@ -42,6 +43,8 @@
 }
 
 .film__description {
+  font-weight: 400;
+  line-height: 20px;
   margin-top: 16px;
   font-size: 14px;
 }
@@ -53,6 +56,7 @@
   height: 400px;
 
   img {
-    object-fit: contain;
+    object-fit: cover;
+    border-radius: 28px;
   }
 }

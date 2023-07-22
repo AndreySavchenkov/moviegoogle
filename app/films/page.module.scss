@@ -1,0 +1,17 @@
+.page {
+
+}
+
+.page__header {
+  margin-top: 32px;
+  display: flex;
+  max-width: 800px;
+  gap: 28px
+}
+
+.page__films {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 32px;
+}
