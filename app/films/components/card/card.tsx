@@ -2,6 +2,7 @@ import React, {FC} from 'react';
 import Image from "next/image";
 import {useClasses} from './use-classes';
 import {useRouter} from "next/navigation";
+import {blurData} from "@shared/constants";
 
 type CardProps = {
   id: number;
@@ -38,7 +39,7 @@ const Card: FC<CardProps> = ({id,name, image, rating, votes, description, year})
   return (
     <div className={cnRoot} onClick={routeToFilmPage}>
       <div className={cnImage}>
-        <Image src={image} fill alt='film image'/>
+        <Image src={image} fill alt='film image' placeholder='blur' blurDataURL={blurData}/>
       </div>
       <div className={cnContent}>
         <span className={cnContentTitle}>{name}</span>

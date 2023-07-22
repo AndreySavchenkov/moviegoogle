@@ -3,6 +3,7 @@ import Image from "next/image";
 import Actors from "@components/full-film/components/actors/actors";
 import {useClasses} from "./use-classes";
 import {MovieT} from "@shared/types";
+import {blurData} from "@shared/constants";
 
 type FullFilmProps = {
   film: MovieT;
@@ -38,7 +39,7 @@ const FullFilm: FC<FullFilmProps> = ({film}) => {
       </h1>
       <section className={cnTopContainer}>
         <div>
-          <Image src={film.poster.url} alt="film logo" width={300} height={400}/>
+          <Image src={film.poster.url} alt="film logo" width={300} height={400} placeholder='blur' blurDataURL={blurData} />
         </div>
         <div className={cnTopContainerInfo}>
           {infoRows.map((row, index) => {
@@ -73,7 +74,7 @@ const FullFilm: FC<FullFilmProps> = ({film}) => {
             <p className={cnDescription}>{film.description}</p>
 
             <div className={cnBackdrop}>
-              <Image src={film.backdrop.url} alt="backdrop" fill/>
+              <Image src={film.backdrop.url} alt="backdrop" fill placeholder='blur' blurDataURL={blurData}/>
             </div>
 
             <Actors actors={film.persons}/>

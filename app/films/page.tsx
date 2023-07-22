@@ -36,7 +36,6 @@ export default function Films() {
 
   return (
     <main className={cnRoot}>
-
       <form className={cnHeader} onSubmit={handleSubmit(onSubmit)}>
         <Controller name='name' control={control} render={({field}) => (
           <BaseInput placeholder='Film title' {...field} />
@@ -58,7 +57,6 @@ export default function Films() {
           />
         ))}
       </div>
-
     </main>
   );
 }
