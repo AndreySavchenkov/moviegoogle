@@ -1,8 +1,11 @@
+'use client'
+
 import React, {FC} from 'react';
 import Image from "next/image";
 import {useClasses} from './use-classes';
 import {useRouter} from "next/navigation";
 import {blurData} from "@shared/constants";
+import {Card} from "@nextui-org/react";
 
 type CardProps = {
   id: number;
@@ -14,7 +17,7 @@ type CardProps = {
   description?: string;
 }
 
-const Card: FC<CardProps> = ({id,name, image, rating, votes, description, year}) => {
+const CustomCard: FC<CardProps> = ({id, name, image, rating, votes, description, year}) => {
   const {
     cnRoot, cnImage, cnContent, cnContentTitle, cnInfo,
     cnInfoTitle,
@@ -37,31 +40,37 @@ const Card: FC<CardProps> = ({id,name, image, rating, votes, description, year})
   }
 
   return (
-    <div className={cnRoot} onClick={routeToFilmPage}>
-      <div className={cnImage}>
-        <Image src={image} fill alt='film image' placeholder='blur' blurDataURL={blurData}/>
-      </div>
-      <div className={cnContent}>
-        <span className={cnContentTitle}>{name}</span>
-
-        <div className={cnContentInner}>
-          {infoRows.map((row, index) => (
-            <div key={index} className={cnInfo}>
-              <span className={cnInfoTitle}>{row.title}:</span>
-              <span className={cnInfoValue}>{row.value}</span>
-            </div>
-          ))}
+    <Card
+      isPressable
+      isHoverable
+      css={{borderRadius: '28px'}}
+    >
+      <div className={cnRoot} onClick={routeToFilmPage}>
+        <div className={cnImage}>
+          <Image src={image} fill alt='film image' placeholder='blur' blurDataURL={blurData}/>
         </div>
+        <div className={cnContent}>
+          <span className={cnContentTitle}>{name}</span>
 
-        {description && (
-          <div className={cnContentDescription}>
-            <p className={cnContentDescriptionText}>{description}</p>
+          <div className={cnContentInner}>
+            {infoRows.map((row, index) => (
+              <div key={index} className={cnInfo}>
+                <span className={cnInfoTitle}>{row.title}:</span>
+                <span className={cnInfoValue}>{row.value}</span>
+              </div>
+            ))}
           </div>
-        )}
 
+          {description && (
+            <div className={cnContentDescription}>
+              <p className={cnContentDescriptionText}>{description}</p>
+            </div>
+          )}
+
+        </div>
       </div>
-    </div>
+    </Card>
   );
 };
 
-export default Card;
+export default CustomCard;
