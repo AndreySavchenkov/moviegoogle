@@ -4,6 +4,7 @@ import Actors from "@components/full-film/components/actors/actors";
 import {useClasses} from "./use-classes";
 import {MovieT} from "@shared/types";
 import {blurData} from "@shared/constants";
+import Facts from "@components/full-film/components/facts/facts";
 
 type FullFilmProps = {
   film: MovieT;
@@ -76,9 +77,10 @@ const FullFilm: FC<FullFilmProps> = ({film}) => {
             <div className={cnBackdrop}>
               <Image src={film.backdrop.url} alt="backdrop" fill placeholder='blur' blurDataURL={blurData}/>
             </div>
-
-            <Actors actors={film.persons}/>
           </div>
+
+          <Actors actors={film.persons}/>
+          <Facts facts={film?.facts}/>
         </div>
 
       </section>

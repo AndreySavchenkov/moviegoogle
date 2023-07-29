@@ -37,4 +37,5 @@ export type MovieT = {
     name: string;
     profession: string;
   }[];
+  facts?: {value: string, spoiler: boolean, type: string}[];
 }
