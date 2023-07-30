@@ -9,6 +9,7 @@ export const useClasses = () => {
   const cnTitle = cn('film__title');
   const cnSecondaryTitle = cn('film__title--secondary');
   const cnTopContainer = cn('film__top-container');
+  const cnFakeImage = cn('film__top-container-fake-image');
   const cnTopContainerInfo = cn('film__top-container-info');
   const cnTopContainerInfoTitle = cn('film__top-container-info-title');
   const cnTopContainerInfoValue = cn('film__top-container-info-value');
@@ -27,5 +28,6 @@ export const useClasses = () => {
     cnTopContainerInfoValue,
     cnDescription,
     cnBackdrop,
+    cnFakeImage,
   };
 };

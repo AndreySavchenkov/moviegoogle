@@ -4,6 +4,7 @@ import {useClasses} from './use-classes';
 import {useRouter} from "next/navigation";
 import {blurData} from "@shared/constants";
 import {Card} from "@nextui-org/react";
+import noImage from "@public/no-image.svg";
 
 type CardProps = {
   id: number;
@@ -23,6 +24,7 @@ const CustomCard: FC<CardProps> = ({id, name, image, rating, votes, description,
     cnContentInner,
     cnContentDescription,
     cnContentDescriptionText,
+    cnNoImage,
   } = useClasses();
 
   const router = useRouter();
@@ -45,7 +47,13 @@ const CustomCard: FC<CardProps> = ({id, name, image, rating, votes, description,
     >
       <div className={cnRoot} onClick={routeToFilmPage}>
         <div className={cnImage}>
-          <Image src={image} fill alt='film image' placeholder='blur' blurDataURL={blurData}/>
+          {image ? (
+              <Image src={image} fill alt='film image' placeholder='blur' blurDataURL={blurData}/>
+            ) : (
+              <div className={cnNoImage}>
+                <Image src={noImage} alt='no image' placeholder='blur' blurDataURL={blurData}/>
+              </div>
+            )}
         </div>
         <div className={cnContent}>
           <span className={cnContentTitle}>{name}</span>

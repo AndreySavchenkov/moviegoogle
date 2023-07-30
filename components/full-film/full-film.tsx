@@ -5,6 +5,7 @@ import {useClasses} from "./use-classes";
 import {MovieT} from "@shared/types";
 import {blurData} from "@shared/constants";
 import Facts from "@components/full-film/components/facts/facts";
+import noImage from '@public/no-image.svg';
 
 type FullFilmProps = {
   film: MovieT;
@@ -22,6 +23,7 @@ const FullFilm: FC<FullFilmProps> = ({film}) => {
     cnTopContainerInfoValue,
     cnDescription,
     cnBackdrop,
+    cnFakeImage,
   } = useClasses();
 
   const infoRows = [
@@ -39,9 +41,16 @@ const FullFilm: FC<FullFilmProps> = ({film}) => {
         {film.name} {film.alternativeName && <span className={cnSecondaryTitle}>({film.alternativeName})</span>}
       </h1>
       <section className={cnTopContainer}>
-        <div>
-          <Image src={film.poster.url} alt="film logo" width={300} height={400} placeholder='blur' blurDataURL={blurData} />
-        </div>
+
+        {film?.poster?.url ? (
+          <div>
+            <Image src={film.poster.url} alt="film logo" width={300} height={400} placeholder='blur'
+                   blurDataURL={blurData}/>
+          </div>
+        ) : (<div className={cnFakeImage}>
+          <Image src={noImage} alt='no image' />
+        </div>)}
+
         <div className={cnTopContainerInfo}>
           {infoRows.map((row, index) => {
             if (row.value) {
@@ -75,7 +84,11 @@ const FullFilm: FC<FullFilmProps> = ({film}) => {
             <p className={cnDescription}>{film.description}</p>
 
             <div className={cnBackdrop}>
-              <Image src={film.backdrop.url} alt="backdrop" fill placeholder='blur' blurDataURL={blurData}/>
+
+              {film?.backdrop?.url && (
+                <Image src={film.backdrop.url} alt="backdrop" fill placeholder='blur' blurDataURL={blurData}/>
+              )}
+
             </div>
           </div>
 

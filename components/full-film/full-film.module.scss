@@ -20,6 +20,15 @@
   margin-top: 16px;
 }
 
+.film__top-container-fake-image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 300px;
+  height: 400px;
+  background-color: #9BA4B5;
+}
+
 .film__top-container-info {
   display: flex;
   flex-direction: column;

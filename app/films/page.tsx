@@ -33,6 +33,7 @@ export default function Films() {
 
   const onSubmit = async (data: FormType) => {
     setName(data.name);
+
     if (data.rating) {
       setRating(Number(data.rating));
     }

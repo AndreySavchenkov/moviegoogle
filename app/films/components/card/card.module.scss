@@ -14,6 +14,14 @@
   height: 300px;
 }
 
+.card__no-image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
 .card__content {
   display: flex;
   flex-direction: column;

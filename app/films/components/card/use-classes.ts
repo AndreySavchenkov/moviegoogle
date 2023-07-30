@@ -7,6 +7,7 @@ const cn = classNames.bind(classes);
 export const useClasses = () => {
   const cnRoot = cn('card');
   const cnImage = cn('card__image');
+  const cnNoImage = cn('card__no-image');
   const cnContent = cn('card__content');
   const cnContentInner = cn('card__content-inner');
   const cnContentTitle = cn('card__content-title');
@@ -27,5 +28,6 @@ export const useClasses = () => {
     cnInfoValue,
     cnContentDescription,
     cnContentDescriptionText,
+    cnNoImage,
   };
 };
