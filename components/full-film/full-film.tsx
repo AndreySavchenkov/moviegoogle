@@ -48,7 +48,7 @@ const FullFilm: FC<FullFilmProps> = ({film}) => {
                    blurDataURL={blurData}/>
           </div>
         ) : (<div className={cnFakeImage}>
-          <Image src={noImage} alt='no image' />
+          <Image src={noImage} alt='no image'/>
         </div>)}
 
         <div className={cnTopContainerInfo}>
@@ -83,13 +83,12 @@ const FullFilm: FC<FullFilmProps> = ({film}) => {
             </div>
             <p className={cnDescription}>{film.description}</p>
 
-            <div className={cnBackdrop}>
-
-              {film?.backdrop?.url && (
+            {film?.backdrop?.url && (
+              <div className={cnBackdrop}>
                 <Image src={film.backdrop.url} alt="backdrop" fill placeholder='blur' blurDataURL={blurData}/>
-              )}
+              </div>
+            )}
 
-            </div>
           </div>
 
           <Actors actors={film.persons}/>

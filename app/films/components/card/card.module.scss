@@ -6,6 +6,10 @@
   border-radius: 28px;
   cursor: pointer;
   border: 1px solid var(--light-color);
+
+  &:active {
+    scale: 0.99;
+  }
 }
 
 .card__image {

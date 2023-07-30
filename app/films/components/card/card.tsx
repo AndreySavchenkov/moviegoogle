@@ -3,7 +3,6 @@ import Image from "next/image";
 import {useClasses} from './use-classes';
 import {useRouter} from "next/navigation";
 import {blurData} from "@shared/constants";
-import {Card} from "@nextui-org/react";
 import noImage from "@public/no-image.svg";
 
 type CardProps = {
@@ -16,7 +15,7 @@ type CardProps = {
   description?: string;
 }
 
-const CustomCard: FC<CardProps> = ({id, name, image, rating, votes, description, year}) => {
+const FilmCard: FC<CardProps> = ({id, name, image, rating, votes, description, year}) => {
   const {
     cnRoot, cnImage, cnContent, cnContentTitle, cnInfo,
     cnInfoTitle,
@@ -40,43 +39,37 @@ const CustomCard: FC<CardProps> = ({id, name, image, rating, votes, description,
   }
 
   return (
-    <Card
-      isPressable
-      isHoverable
-      css={{borderRadius: '28px'}}
-    >
-      <div className={cnRoot} onClick={routeToFilmPage}>
-        <div className={cnImage}>
-          {image ? (
-              <Image src={image} fill alt='film image' placeholder='blur' blurDataURL={blurData}/>
-            ) : (
-              <div className={cnNoImage}>
-                <Image src={noImage} alt='no image' placeholder='blur' blurDataURL={blurData}/>
-              </div>
-            )}
-        </div>
-        <div className={cnContent}>
-          <span className={cnContentTitle}>{name}</span>
-
-          <div className={cnContentInner}>
-            {infoRows.map((row, index) => (
-              <div key={index} className={cnInfo}>
-                <span className={cnInfoTitle}>{row.title}:</span>
-                <span className={cnInfoValue}>{row.value}</span>
-              </div>
-            ))}
+    <div className={cnRoot} onClick={routeToFilmPage}>
+      <div className={cnImage}>
+        {image ? (
+          <Image src={image} fill alt='film image' placeholder='blur' blurDataURL={blurData}/>
+        ) : (
+          <div className={cnNoImage}>
+            <Image src={noImage} alt='no image' placeholder='blur' blurDataURL={blurData}/>
           </div>
-
-          {description && (
-            <div className={cnContentDescription}>
-              <p className={cnContentDescriptionText}>{description}</p>
-            </div>
-          )}
-
-        </div>
+        )}
       </div>
-    </Card>
+      <div className={cnContent}>
+        <span className={cnContentTitle}>{name}</span>
+
+        <div className={cnContentInner}>
+          {infoRows.map((row, index) => (
+            <div key={index} className={cnInfo}>
+              <span className={cnInfoTitle}>{row.title}:</span>
+              <span className={cnInfoValue}>{row.value}</span>
+            </div>
+          ))}
+        </div>
+
+        {description && (
+          <div className={cnContentDescription}>
+            <p className={cnContentDescriptionText}>{description}</p>
+          </div>
+        )}
+
+      </div>
+    </div>
   );
 };
 
-export default CustomCard;
+export default FilmCard;
