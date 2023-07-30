@@ -32,7 +32,7 @@ const Facts: FC<FactsProps> = ({facts}) => {
 
 
       {facts?.map((fact, index) => (
-        <div className={cnContainer}>
+        <div className={cnContainer} key={index}>
           <span className={cnCount}>{index + 1}.</span>
           <div key={index} className={cnFact} dangerouslySetInnerHTML={{__html: fact.value}}/>
         </div>
