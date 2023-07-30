@@ -9,11 +9,13 @@ export const useClasses = () => {
   const cnHeader = cn('page__header');
   const cnFilms = cn('page__films');
   const cnPagination = cn('page__pagination');
+  const cnNotFound = cn('page__not-found');
 
   return {
     cnRoot,
     cnHeader,
     cnFilms,
     cnPagination,
+    cnNotFound,
   };
 };

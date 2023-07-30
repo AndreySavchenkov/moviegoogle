@@ -3,7 +3,7 @@
 }
 
 .page__header {
-  margin-top: 32px;
+  margin-top: 42px;
   display: flex;
   max-width: 800px;
   gap: 28px
@@ -18,4 +18,10 @@
 
 .page__pagination {
   margin: 28px 0;
+}
+
+.page__not-found {
+  display: flex;
+  justify-content: center;
+  margin-top: calc((100vh - 200px)/2);
 }
